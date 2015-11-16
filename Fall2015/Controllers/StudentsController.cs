@@ -10,6 +10,7 @@ using Fall2015.ViewModels;
 
 namespace Fall2015.Controllers
 {
+    [Authorize]
     public class StudentsController : Controller
     {
         private readonly IStudentsRepository studentsRepository;
@@ -32,7 +33,7 @@ namespace Fall2015.Controllers
             return View();
         }
 
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             StudentIndexViewModel sivm = new StudentIndexViewModel
@@ -73,6 +74,7 @@ namespace Fall2015.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles="Admin,SuperAdmin,GodLikeAdmin")]
         public ActionResult Create()
         {
             CreateEditStudentViewModel vm =

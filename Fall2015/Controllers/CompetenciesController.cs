@@ -52,8 +52,11 @@ namespace Fall2015.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create(string name, string competencyHeaderName)
+        public JsonResult Create(string name, string competencyHeaderName)
         {
+            //Look up a competency header by its name
+            //save the competency with that comp.Headers Id.
+
             //Need to update this code....
             //if (ModelState.IsValid)
             //{
@@ -64,7 +67,7 @@ namespace Fall2015.Controllers
 
             //ViewBag.CompetencyHeaderId = new SelectList(competenciesRepository.All, "CompetencyHeaderId", "Name", competency.CompetencyHeaderId);
             //return View(competency);
-            return null;
+            return Json("Ok");
         }
 
         // GET: Competencies/Edit/5

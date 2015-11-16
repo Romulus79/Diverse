@@ -31,7 +31,7 @@
                         <div class="Invisible FilterCompetencies">
                             <label class="lblHeader"><input type="checkbox" name="competencyHeader" class="CompetencyHeader MarginRight5" />@compHeader.Name</label>
                             <span class="glyphicon glyphicon-plus Invisible"></span>
-
+              
                             <div class="outerContainer">
                                 @foreach (var competency in @compHeader.Competencies)
                                 {
@@ -54,7 +54,7 @@
             @foreach (Student student in Model.Students)
             {
                 <div class="col-lg-2 col-sm-3 col-xs-4">
-                    <a href="@Url.Action("Edit", "Students", new { id=@student.StudentId})">
+                    <a href="@Url.Action("Edit", "Students", new { studentId=@student.StudentId})">
 
                         <img src="../../@student.ProfileImagePath" class="profileImage thumbnail img-responsive">
                     </a>
@@ -84,8 +84,11 @@
             var value = $(this).parent().children(".compHeader").val();
             var compHeaderName = "Something"; //Ex: Find the relevant competency header name
             //use .text()
-
             //Call the Create (post) of CompetencyHeader controller
+
+            var that = $(this);
+
+
             var myData = {
                 name: value,
                 competencyHeaderName: compHeaderName
@@ -97,9 +100,14 @@
                 data: JSON.stringify(myData),
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function(data) {
+
+                success: function (data) { //data holds data from the server
                     console.log(data);
-                    alert("sucess");
+                    console.log($(this));
+                    console.log(that);
+
+                    //update the user interface..
+                    //
                 },
                 error: function() {
                     alert("Something bad happened");
