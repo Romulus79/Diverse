@@ -1,0 +1,50 @@
+﻿
+@using Fall2015.Models
+@model Fall2015.ViewModels.CreateEditStudentViewModel
+
+<div class="blockcenter gray-round">
+
+    <div class="form-group">
+        <label>Firstname</label>
+
+        <!-- Either the html helper -->
+        @Html.TextBoxFor(a => a.Student.Firstname, new { @class = "form-control" })
+
+        <!-- Or you can write the html, remember the name attribute so modelbinding works.. -->
+        <!--<input type="text" name="firstname" class="form-control"/>-->
+    </div>
+
+    <div class="form-group">
+        <label>Lastname</label>
+        @Html.TextBoxFor(a => a.Student.Lastname, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        @Html.TextBoxFor(a => a.Student.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Mobile Phone</label>
+        @Html.TextBoxFor(a => a.Student.MobilePhone, new { @class = "form-control" })
+    </div>
+
+    @foreach (CompetencyHeader competencyHeader in Model.CompetencyHeaders)
+    {
+        <div>
+            <label>@competencyHeader.Name</label>
+        </div>
+        foreach (Competency competency in competencyHeader.Competencies)
+        {
+            <label>
+                <input type="checkbox" value="@competency.CompetencyId" 
+                       name="compIds"/>
+                @competency.Name
+            </label>
+        }
+
+    }
+
+</div>
+
+<input type="submit" value="Save" class="btn btn-primary" id="saveButton" />

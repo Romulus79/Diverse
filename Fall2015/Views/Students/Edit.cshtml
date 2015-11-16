@@ -1,0 +1,20 @@
+﻿@using Fall2015.Models;
+
+@model Student
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    <!-- fdkjaæsdfja -->
+    @Html.ValidationSummary()
+
+    <img src="@Model.ProfileImagePath" alt="Profile image"/>
+
+    @Html.Partial("_CreateEditStudent")
+}
